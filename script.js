@@ -136,9 +136,7 @@ const game_flow = (() => {
                 if (game.xTurn) {
                     game.xState.push(cellValue) 
                     target.innerHTML = '❌'
-                } else if (_gamemode_bot) {
-                    _botmode()
-                } else {
+                } else if (!_gamemode_bot) {
                     game.oState.push(cellValue)
                     target.innerHTML = '⭕️'
                 }
@@ -146,6 +144,24 @@ const game_flow = (() => {
                 target.classList.add('disabled')
                 target.classList.add(game.xTurn ? 'x' : 'o')
                 
+                // Simple botmode
+                if (_gamemode_bot) {
+                    let check = false;
+                    let random;
+                    while (!check) {
+                        random = Math.floor(Math.random() * 9)
+                        const isDisabled2 = _playfield[random].classList.contains('disabled')
+
+                        if (!isDisabled2) {
+                            console.log(_playfield[random].classList.contains)
+                            check = true;
+                        }
+                    }
+                    console.log(_playfield[random])
+                    game.oState.push(cellValue)
+                    _playfield[random].innerHTML = '⭕️'
+                    game.xTurn = !game.xTurn
+                }
                 game.xTurn = !game.xTurn
             }
 
@@ -181,9 +197,6 @@ const game_flow = (() => {
    
     })
 
-    function _botmode () {
-
-    }
     // Restart game
     _reset_btn.addEventListener('click', () => {
         _game_over_text.setAttribute('style', 'visibility: hidden');
@@ -208,12 +221,3 @@ const game_flow = (() => {
     }
 
 })();
-
-
-
-
-
-
-
-
-
