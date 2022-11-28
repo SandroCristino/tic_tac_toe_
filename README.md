@@ -28,4 +28,4 @@ Building simple tic tac toe game as browser game. Self traing for factory and mo
 
 check out the live preview  >> 
 
-https://sandywezzy.github.io/tic_tac_toe/_
+https://sandywezzy.github.io/tic_tac_toe_/
